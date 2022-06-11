@@ -10,6 +10,9 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      sans: ['Poppins', 'Arial', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],

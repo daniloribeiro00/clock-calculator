@@ -1,17 +1,25 @@
-<script setup>
-useHead({
-  title: 'Calculadora de Horas',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
-  charset: 'utf-8',
-  meta: [{ name: 'Calculadora de Horas', content: 'Calculadora de Horas Trabalhadas' }],
-  bodyAttrs: {
-    class: 'test',
-  },
-});
+<script setup lang="ts">
+import { useGlobalStore } from './stores/globalStore';
+
+const globalStore = useGlobalStore();
 </script>
 
 <template>
-  <div>
-    <h1>Hello world</h1>
-  </div>
+  <Head>
+    <Title>Calculadora de Horas</Title>
+    <Meta
+      name="Calculadora de Horas"
+      content="Calculadora de Horas Trabalhadas"
+    />
+    <Body class="bg-[#161f2c]" />
+  </Head>
+  <main
+    class="flex h-screen w-screen flex-col items-center bg-gradient-to-bl from-[#172c30] via-[#14222d] to-[#141b2d]"
+  >
+    <Header />
+    {{ globalStore.mode }}
+    <Transition name="fade" mode="out-in">
+      <TotalTime v-if="globalStore.mode === 'totalTime'" />
+    </Transition>
+  </main>
 </template>
