@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia';
-import { useLocalStorage } from '@vueuse/core';
 
 export const useGlobalStore = defineStore('globalStore', {
   state: () => ({
-    mode: useLocalStorage('mode', 'totalTime'),
+    mode: 'totalTime',
   }),
   actions: {
     setMode(mode: string) {

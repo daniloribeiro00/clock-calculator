@@ -26,18 +26,24 @@ const props = defineProps({
   },
 });
 
-defineEmits(['update:modelValue']);
+defineEmits(['uptime:modelValue']);
 
 const focusNext = () => {
-  if (props.modelValue.length === 5) {
+  console.log('ok')
+  if (
+    (props.placeholder === '00:00' && props.modelValue.length === 5) ||
+    (props.placeholder === '0' && props.modelValue.length === 1)
+  ) {
     const input = document.getElementById(props.id);
     const nextInput = document.getElementById(
-      `date-${Number(props.id.split('-')[1]) + 1}`
+      `time-${Number(props.id.split('-')[1]) + 1}`
     );
     if (nextInput) {
       nextInput.focus();
     } else if (input) {
       input.blur();
+      const button = document.getElementById('button') as HTMLButtonElement;
+      button.click();
     }
   }
 };
@@ -52,20 +58,31 @@ const selectAll = () => {
 
 <template>
   <div class="flex flex-col items-center gap-2">
-    <label :for="id" class="text-white text-center text-sm xs:text-base">{{ label }}</label>
+    <label :for="id" class="text-center text-sm text-white xs:text-base">{{
+      label
+    }}</label>
     <input
       :value="modelValue"
       v-bind="$attrs"
       :id="id"
-      v-maska="{
-        mask: 'Z#:Y#',
-        tokens: { Z: { pattern: /[0-2]/ }, Y: { pattern: /[0-5]/ } },
-      }"
+      required
+      v-maska="
+        placeholder === '00:00'
+          ? {
+              mask: 'Z#:Y#',
+              tokens: { Z: { pattern: /[0-2]/ }, Y: { pattern: /[0-5]/ } },
+            }
+          : '#'
+      "
       :placeholder="placeholder"
       autocomplete="off"
-      class="h-14 w-32 sm:w-60 rounded-lg border border-slate-700 bg-slate-800  text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-teal-600 selection:text-teal-900 focus:ring sm:h-12"
-      :class="placeholder === '00:00' ? 'px-[2.4rem] sm:px-[5.8rem]' : 'px-14 sm:px-28'"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      class="h-14 w-32 rounded-lg border border-slate-700 bg-slate-800 text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-teal-600 selection:text-teal-900 focus:ring sm:h-12 sm:w-60"
+      :class="
+        placeholder === '00:00'
+          ? 'px-[2.4rem] sm:px-[5.8rem]'
+          : 'px-14 sm:px-28'
+      "
+      @input="$emit('uptime:modelValue', ($event.target as HTMLInputElement).value)"
       @keyup="focusNext"
       @click="selectAll"
       @focus="selectAll"
