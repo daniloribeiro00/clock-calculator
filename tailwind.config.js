@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './components/**/*.{js,vue,ts}',
@@ -12,6 +14,10 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Poppins', 'Arial', 'sans-serif'],
+    },
+    screens: {
+      'xs': '360px',
+      ...defaultTheme.screens,
     },
     extend: {},
   },

@@ -18,18 +18,25 @@ onMounted(() => {
 
 <template>
   <header class="flex w-full justify-between p-6">
-    <h1 class="text-2xl leading-none text-white">
-      Calculadora de Horas Trabalhadas
+    <h1
+      class="whitespace-pre-line text-xl leading-none text-white sm:whitespace-normal sm:text-2xl"
+    >
+      {{ 'Calculadora de\n Horas Trabalhadas' }}
     </h1>
     <div class="flex items-center justify-center gap-4">
       <Transition name="fade" mode="out-in">
         <p
           v-if="globalStore.mode === 'totalTime'"
-          class="text-sm leading-tight text-white"
+          class="whitespace-pre-line text-sm leading-tight text-white sm:whitespace-normal text-right"
         >
-          Total de Horas
+          {{ 'Total de\n Horas' }}
         </p>
-        <p v-else class="text-sm leading-tight text-white">Horário de Saída</p>
+        <p
+          v-else
+          class="whitespace-pre-line text-sm leading-tight text-white sm:whitespace-normal text-right"
+        >
+          {{ 'Horário\n de Saída' }}
+        </p>
       </Transition>
       <Switch
         v-model="enabled"

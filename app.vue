@@ -17,9 +17,9 @@ const globalStore = useGlobalStore();
     class="flex h-screen w-screen flex-col items-center bg-gradient-to-bl from-[#172c30] via-[#14222d] to-[#141b2d]"
   >
     <Header />
-    {{ globalStore.mode }}
     <Transition name="fade" mode="out-in">
       <TotalTime v-if="globalStore.mode === 'totalTime'" />
+      <EndTime v-else />
     </Transition>
   </main>
 </template>
