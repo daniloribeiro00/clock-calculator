@@ -36,7 +36,7 @@ onMounted(() => {
       </h1>
     </span>
     <div class="flex items-center justify-center gap-4">
-      <Transition name="fade" mode="out-in">
+      <Transition name="header" mode="out-in">
         <p
           v-if="globalStore.mode === 'totalTime'"
           class="whitespace-pre-line text-right text-sm leading-tight text-white sm:whitespace-normal"
@@ -53,7 +53,7 @@ onMounted(() => {
       <Switch
         v-model="enabled"
         :class="enabled ? 'bg-teal-700' : 'bg-teal-900'"
-        class="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent outline-none ring-teal-600 ring-offset-2 transition-all duration-200 ease-in-out focus:ring sm:h-7 sm:w-14"
+        class="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent outline-none ring-teal-600 transition-all duration-200 ease-in-out focus:ring sm:h-7 sm:w-14"
       >
         <span class="sr-only">Alterar modo</span>
         <span
@@ -66,14 +66,14 @@ onMounted(() => {
   </header>
 </template>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
+<style scoped>
+.header-enter-active,
+.header-leave-active {
   transition: all 0.05s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.header-enter-from,
+.header-leave-to {
   opacity: 50%;
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import Input from '@/components/Input.vue';
 
 const time1 = ref('');
 const time2 = ref('');
@@ -7,9 +8,10 @@ const time3 = ref('');
 const totalTime = ref('8');
 const finalTime = ref('00:00');
 
+const isIncorrect = ref(false);
+
 const handleSubmit = () => {
   const time = {
-    // get input type hh:mm and convert it to minutes
     start:
       Number(time1.value.split(':')[0]) * 60 +
       Number(time1.value.split(':')[1]),
@@ -28,8 +30,6 @@ const handleSubmit = () => {
   const finalHours = String(Math.floor(finalTime2 / 60)).padStart(2, '0');
   const finalMinutes = String(Math.floor(finalTime2 % 60)).padStart(2, '0');
 
-  console.log(`${finalHours}:${finalMinutes}`);
-
   if (
     !finalTime.value ||
     finalTime2 <= 0 ||
@@ -37,15 +37,16 @@ const handleSubmit = () => {
     time.return <= time.interval ||
     finalTime2 <= time.return
   ) {
-    // setIncorrectMessage1(true);
-    // setHorarioSaida('00:00');
-    // setTimeout(() => {
-    // 	setIncorrectMessage1(false);
-    // }, 5000);
+    isIncorrect.value = true;
+    const input = document.getElementById('time-1') as HTMLInputElement;
+    if (input) input.focus();
+    setTimeout(() => {
+      isIncorrect.value = false;
+    }, 3000);
     return;
   }
 
-  // setIncorrectMessage1(false);
+  isIncorrect.value = false;
   finalTime.value = `${finalHours}:${finalMinutes}`;
 };
 </script>
@@ -54,7 +55,7 @@ const handleSubmit = () => {
   <div class="flex h-full w-full max-w-[1200px] flex-col items-center p-6">
     <h1 class="text-2xl text-white">Horário de Saída</h1>
     <form
-      class="flex h-[70%] flex-col items-center justify-center gap-12 py-4 sm:h-4/6"
+      class="flex h-[77%] flex-col items-center justify-center gap-12 py-4"
       @submit.prevent="handleSubmit"
     >
       <div class="grid grid-cols-2 gap-x-4 gap-y-3">
@@ -78,12 +79,28 @@ const handleSubmit = () => {
             v-model="totalTime"
             label="Horas Trabalhadas"
             placeholder="0"
+            type="number"
           />
         </div>
       </div>
-      <button id="button" class="hidden">enviar</button>
+      <button
+        id="button"
+        class="relative mt-2 rounded-lg bg-teal-800 px-12 py-3 text-white outline-none transition-all hover:bg-teal-900 focus:ring focus:ring-teal-600"
+      >
+        <Transition name="fade" :duration="200">
+          <span
+            v-if="isIncorrect"
+            class="absolute inset-x-0 -top-7 text-sm text-red-500"
+          >
+            Dados inválidos!
+          </span>
+        </Transition>
+        Calcular
+      </button>
     </form>
-    <div class="flex h-1/5 w-full flex-col items-center justify-center">
+    <div
+      class="flex h-[20%] w-full flex-col items-center justify-center sm:h-auto"
+    >
       <p class="text-2xl text-white">Saída às</p>
       <p class="text-3xl text-white">{{ finalTime }}</p>
     </div>
