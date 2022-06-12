@@ -71,7 +71,7 @@ const selectAll = () => {
       :type="type"
       :placeholder="placeholder"
       autocomplete="off"
-      class="h-14 w-32 rounded-lg border border-slate-700 bg-slate-800 text-center text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-[#bcd4fb] selection:text-black focus:ring sm:h-12 sm:w-60"
+      class="flex h-14 w-32 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-center text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-[#bcd4fb] selection:text-black focus:ring sm:h-12 sm:w-60"
       @input="input"
       @click="selectAll"
       @focus="selectAll"
