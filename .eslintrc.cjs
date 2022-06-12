@@ -5,11 +5,9 @@ module.exports = {
   root: true,
   extends: [
     'plugin:vue/vue3-essential',
-    'plugin:nuxt/recommended',
     'eslint:recommended',
     '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier',
-    'plugin:prettier/recommended',
   ],
   env: {
     'vue/setup-compiler-macros': true,

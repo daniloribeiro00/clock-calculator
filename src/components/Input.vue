@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { maska } from 'maska';
 import { ref } from 'vue';
-
-const vMaska = maska;
 
 const props = defineProps({
   modelValue: {
@@ -19,6 +16,11 @@ const props = defineProps({
     required: false,
     default: '00:00',
   },
+  type: {
+    type: String,
+    required: false,
+    default: 'time',
+  },
   id: {
     type: String,
     required: false,
@@ -29,7 +31,7 @@ const props = defineProps({
 defineEmits(['uptime:modelValue']);
 
 const focusNext = () => {
-  console.log('ok')
+  console.log('ok');
   if (
     (props.placeholder === '00:00' && props.modelValue.length === 5) ||
     (props.placeholder === '0' && props.modelValue.length === 1)
@@ -66,22 +68,10 @@ const selectAll = () => {
       v-bind="$attrs"
       :id="id"
       required
-      v-maska="
-        placeholder === '00:00'
-          ? {
-              mask: 'Z#:Y#',
-              tokens: { Z: { pattern: /[0-2]/ }, Y: { pattern: /[0-5]/ } },
-            }
-          : '#'
-      "
+      :type="type"
       :placeholder="placeholder"
       autocomplete="off"
-      class="h-14 w-32 rounded-lg border border-slate-700 bg-slate-800 text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-teal-600 selection:text-teal-900 focus:ring sm:h-12 sm:w-60"
-      :class="
-        placeholder === '00:00'
-          ? 'px-[2.4rem] sm:px-[5.8rem]'
-          : 'px-14 sm:px-28'
-      "
+      class="h-14 w-32 rounded-lg border border-slate-700 bg-slate-800 text-center text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-teal-600 selection:text-teal-900 focus:ring sm:h-12 sm:w-60"
       @input="$emit('uptime:modelValue', ($event.target as HTMLInputElement).value)"
       @keyup="focusNext"
       @click="selectAll"

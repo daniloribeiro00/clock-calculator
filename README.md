@@ -1,10 +1,8 @@
-# Nuxt 3 Minimal Starter
+# Calculadora de Horas Trabalhadas
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Calculadora de horas trabalhadas, desenvolvido com Vue.js 3 e Tailwind CSS
 
-## Setup
-
-Make sure to install the dependencies:
+## Instalação
 
 ```bash
 # yarn
@@ -14,29 +12,18 @@ yarn install
 npm install
 
 # pnpm
-pnpm install --shamefully-hoist
+pnpm install
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
+## Execução
 
 ```bash
+# yarn
+yarn dev
+
+# npm
 npm run dev
+
+# pnpm
+pnpm dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
