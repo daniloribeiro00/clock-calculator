@@ -1,6 +1,7 @@
 {
   "name": "calculadora-de-horas",
   "version": "1.0.0",
+  "author": "Danilo Ribeiro",
   "license": "MIT",
   "private": false,
   "scripts": {
