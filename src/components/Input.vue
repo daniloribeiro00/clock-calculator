@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 const props = defineProps({
   modelValue: {
     type: String,
@@ -24,7 +22,7 @@ const props = defineProps({
   id: {
     type: String,
     required: false,
-    default: 0,
+    default: '',
   },
 });
 
@@ -64,9 +62,9 @@ const selectAll = () => {
       label
     }}</label>
     <input
-      :value="modelValue"
       v-bind="$attrs"
       :id="id"
+      :value="modelValue"
       required
       :type="type"
       :placeholder="placeholder"

@@ -23,8 +23,7 @@ const handleSubmit = () => {
 
   const timeTotal = Number(totalTime.value) * 60;
 
-  const finalTime2 =
-    timeTotal - time.interval + time.start + time.return;
+  const finalTime2 = timeTotal - time.interval + time.start + time.return;
 
   const finalHours = String(Math.floor(finalTime2 / 60)).padStart(2, '0');
   const finalMinutes = String(Math.floor(finalTime2 % 60)).padStart(2, '0');
@@ -32,7 +31,7 @@ const handleSubmit = () => {
   console.log(`${finalHours}:${finalMinutes}`);
 
   if (
-    !finalTime ||
+    !finalTime.value ||
     finalTime2 <= 0 ||
     time.interval <= time.start ||
     time.return <= time.interval ||
@@ -61,23 +60,23 @@ const handleSubmit = () => {
       <div class="grid grid-cols-2 gap-x-4 gap-y-3">
         <h2 class="col-span-2 text-center text-xl text-white">Manhã</h2>
         <Input
+          id="time-1"
           v-model="time1"
           label="Início da Jornada"
           autofocus
-          id="time-1"
         />
-        <Input v-model="time2" label="Saída para Intervalo" id="time-2" />
+        <Input id="time-2" v-model="time2" label="Saída para Intervalo" />
       </div>
       <div class="flex items-center justify-center gap-4">
         <div class="grid gap-y-3">
           <h2 class="col-span-2 text-center text-xl text-white">Tarde</h2>
-          <Input v-model="time3" label="Retorno do Intervalo" id="time-3" />
+          <Input id="time-3" v-model="time3" label="Retorno do Intervalo" />
         </div>
         <div class="grid h-full items-end gap-x-4 gap-y-3">
           <Input
+            id="time-4"
             v-model="totalTime"
             label="Horas Trabalhadas"
-            id="time-4"
             placeholder="0"
           />
         </div>

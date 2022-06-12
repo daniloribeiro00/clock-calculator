@@ -10,22 +10,24 @@ const finalTime = ref('00:00');
 const handleSubmit = () => {
   const time = {
     // get input type hh:mm and convert it to minutes
-    start: Number(time1.value.split(':')[0]) * 60 + Number(time1.value.split(':')[1]),
+    start:
+      Number(time1.value.split(':')[0]) * 60 +
+      Number(time1.value.split(':')[1]),
     interval:
-      Number(time2.value.split(':')[0]) * 60 + Number(time2.value.split(':')[1]),
+      Number(time2.value.split(':')[0]) * 60 +
+      Number(time2.value.split(':')[1]),
     return:
-      Number(time3.value.split(':')[0]) * 60 + Number(time3.value.split(':')[1]),
-    final: Number(time4.value.split(':')[0]) * 60 + Number(time4.value.split(':')[1]),
+      Number(time3.value.split(':')[0]) * 60 +
+      Number(time3.value.split(':')[1]),
+    final:
+      Number(time4.value.split(':')[0]) * 60 +
+      Number(time4.value.split(':')[1]),
   };
 
-  const workedTime =
-    time.interval - time.start + (time.final - time.return);
+  const workedTime = time.interval - time.start + (time.final - time.return);
 
   const finalHours = String(Math.floor(workedTime / 60)).padStart(2, '0');
-  const finalMinutes = String(Math.floor(workedTime % 60)).padStart(
-    2,
-    '0'
-  );
+  const finalMinutes = String(Math.floor(workedTime % 60)).padStart(2, '0');
 
   if (
     !workedTime ||
@@ -57,17 +59,17 @@ const handleSubmit = () => {
       <div class="grid grid-cols-2 gap-x-4 gap-y-3">
         <h2 class="col-span-2 text-center text-xl text-white">Manhã</h2>
         <Input
+          id="time-1"
           v-model="time1"
           label="Início da Jornada"
           autofocus
-          id="time-1"
         />
-        <Input v-model="time2" label="Saída para Intervalo" id="time-2" />
+        <Input id="time-2" v-model="time2" label="Saída para Intervalo" />
       </div>
       <div class="grid grid-cols-2 gap-x-4 gap-y-3">
         <h2 class="col-span-2 text-center text-xl text-white">Tarde</h2>
-        <Input v-model="time3" label="Retorno do Intervalo" id="time-3" />
-        <Input v-model="time4" label="Término da Jornada" id="time-4" />
+        <Input id="time-3" v-model="time3" label="Retorno do Intervalo" />
+        <Input id="time-4" v-model="time4" label="Término da Jornada" />
       </div>
       <button id="button" class="hidden">enviar</button>
     </form>
