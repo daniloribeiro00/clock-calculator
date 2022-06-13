@@ -13,6 +13,27 @@ watch(globalStore, () => {
     if (input) input.focus();
   }, 200);
 });
+
+const lightFavicon = document.querySelector(
+  'link#light-favicon'
+) as HTMLLinkElement;
+const darkFavicon = document.querySelector(
+  'link#dark-favicon'
+) as HTMLLinkElement;
+
+const onUpdate = () => {
+  if (matcher.matches) {
+    lightFavicon.remove();
+    document.head.append(darkFavicon);
+  } else {
+    darkFavicon.remove();
+    document.head.append(lightFavicon);
+  }
+};
+
+const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+matcher.addEventListener('change', onUpdate);
+onUpdate();
 </script>
 
 <template>
