@@ -1,28 +1,10 @@
-<script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
-import { Switch } from '@headlessui/vue';
-import { useGlobalStore } from '../stores/globalStore';
-
-const globalStore = useGlobalStore();
-
-const enabled = ref(false);
-
-watch(enabled, () => {
-  globalStore.setMode(enabled.value ? 'endTime' : 'totalTime');
-});
-
-onMounted(() => {
-  enabled.value = localStorage.getItem('mode') === 'endTime' ? true : false;
-});
-</script>
-
 <template>
   <header class="flex w-full justify-between p-6">
     <span class="flex items-center justify-center gap-3">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
-        class="h-5 w-5 pb-px text-white"
+        class="h-6 w-6 text-white"
         fill="currentColor"
       >
         <path
@@ -36,32 +18,18 @@ onMounted(() => {
       </h1>
     </span>
     <div class="flex items-center justify-center gap-4">
-      <Transition name="header" mode="out-in">
-        <p
-          v-if="globalStore.mode === 'totalTime'"
-          class="whitespace-pre-line text-right text-sm leading-tight text-white sm:whitespace-normal"
-        >
-          {{ 'Total de\n Horas' }}
-        </p>
-        <p
-          v-else
-          class="whitespace-pre-line text-right text-sm leading-tight text-white sm:whitespace-normal"
-        >
-          {{ 'Horário\n de Saída' }}
-        </p>
-      </Transition>
-      <Switch
-        v-model="enabled"
-        :class="enabled ? 'bg-teal-700' : 'bg-teal-900'"
-        class="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent outline-none ring-teal-600 transition-all duration-200 ease-in-out focus:ring sm:h-7 sm:w-14"
+      <a
+        href="https://danilo.duarteribeiro.com.br"
+        target="_blank"
+        rel="noreferrer, noopenner"
+        class="group flex items-center justify-center gap-4 text-white"
       >
-        <span class="sr-only">Alterar modo</span>
-        <span
-          aria-hidden="true"
-          :class="enabled ? 'translate-x-6 sm:translate-x-7 ' : 'translate-x-0'"
-          class="pointer-events-none flex h-5 w-5 transform items-center justify-center rounded-full bg-white shadow-lg outline-none ring-0 transition duration-200 ease-in-out sm:h-6 sm:w-6"
+        <p class="group-hover:underline">Danilo Ribeiro</p>
+        <img
+          src="https://avatars.githubusercontent.com/u/68981163?"
+          class="duration-50 h-10 w-10 rounded-full transition-opacity ease-in-out group-hover:opacity-80"
         />
-      </Switch>
+      </a>
     </div>
   </header>
 </template>
