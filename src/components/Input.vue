@@ -24,7 +24,9 @@ const focusNextElement = (event: KeyboardEvent) => {
   if (event.key === 'Enter') {
     const nextElement = event.target as HTMLInputElement;
     if (nextElement.nextElementSibling) {
-      (nextElement.nextElementSibling as HTMLInputElement | HTMLButtonElement)?.focus();
+      (
+        nextElement.nextElementSibling as HTMLInputElement | HTMLButtonElement
+      )?.focus();
     }
   }
 };
@@ -39,7 +41,7 @@ const focusNextElement = (event: KeyboardEvent) => {
   >
     <label
       v-if="label"
-      class="text-center text-sm text-white sm:text-base"
+      class="text-center text-sm text-gray-200 sm:text-base"
     >
       {{ label }}
     </label>
@@ -54,7 +56,7 @@ const focusNextElement = (event: KeyboardEvent) => {
       :placeholder="placeholder ?? '00:00'"
       autocomplete="off"
       :autofocus="autofocus"
-      class="flex h-12 w-36 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-center text-xl text-white caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-[#bcd4fb] selection:text-black focus:ring sm:h-12 sm:w-60 lg:w-72"
+      class="flex h-12 w-36 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-center text-xl text-gray-200 caret-teal-600 outline-none ring-teal-600 transition-all duration-200 ease-in-out selection:bg-[#bcd4fb] selection:text-black focus:ring sm:h-12 sm:w-60 lg:w-72"
       @click="selectAll"
       @focus="selectAll"
       @keydown.enter="focusNextElement"

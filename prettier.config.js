@@ -1,19 +1,15 @@
-/** @type {import("prettier").Options} */
+/**
+ * @see https://prettier.io/docs/en/configuration.html
+ * @type {import("prettier").Config}
+ */
 
-export default {
-  printWidth: 100,
+const config = {
   singleQuote: true,
   jsxSingleQuote: true,
   trailingComma: 'es5',
-  singleAttributePerLine: true,
   htmlWhitespaceSensitivity: 'ignore',
-  overrides: [
-    {
-      files: '*.html',
-      options: {
-        parser: 'html',
-      },
-    },
-  ],
+  singleAttributePerLine: true,
   plugins: ['prettier-plugin-tailwindcss'],
 };
+
+export default config;

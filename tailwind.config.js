@@ -1,14 +1,12 @@
-/* eslint-disable no-undef */
-const defaultTheme = require('tailwindcss/defaultTheme');
-
+/** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    screens: {
-      xs: '380px',
-      ...defaultTheme.screens,
+    extend: {
+      screens: {
+        xs: '380px',
+      },
     },
   },
-  darkMode: 'class',
   plugins: [],
 };
