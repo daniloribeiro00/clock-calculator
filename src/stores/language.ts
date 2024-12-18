@@ -1,3 +1,4 @@
+import { useTitle } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
 type State = {
@@ -10,7 +11,14 @@ export const useLanguageStore = defineStore('languageStore', {
   }),
   actions: {
     setLanguage(language: State['language']) {
+      const title = useTitle();
+
       this.language = language;
+      if (language === 'pt') {
+        title.value = 'Calculadora de Horas';
+      } else {
+        title.value = 'Clock Calculator';
+      }
     },
   },
 });
