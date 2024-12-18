@@ -1,6 +1,8 @@
-# Calculadora de Horas Trabalhadas
+# Clock Calculator
 
-Calculadora de horas trabalhadas, desenvolvido com Vue.js 3 e Tailwind CSS
+A time clock calculator build with Vue.js 3 and Tailwind CSS
+
+[Preview](https://clockcalculator.vercel.app/)
 
 ## Instalação
 
